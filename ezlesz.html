@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday</title>
+  </head>
+  <style>
+    body {
+      margin: 0;
+      background: url(img.png);
+      overflow: hidden;
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    #container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    #text {
+      position: absolute;
+      top: 40%;
+      width: 100%;
+      text-align: center;
+      font-size: 4rem;
+      color: white;
+    }
+
+    .letter {
+      display: inline-block;
+      opacity: 0;
+      transform: scale(0.5);
+      transition: all 0.4s ease;
+      position: relative;
+    }
+
+    .balloon {
+      position: absolute;
+      top: -50px;
+      left: 50%;
+      width: 20px;
+      height: 30px;
+      background: pink;
+      border-radius: 50% 50% 50% 50%;
+      transform: translateX(-50%);
+    }
+
+    .string {
+      width: 2px;
+      height: 40px;
+      background: #fff;
+      position: absolute;
+      top: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    @keyframes float {
+      0% {
+        transform: translate(-50%, 0);
+      }
+      100% {
+        transform: translate(-50%, -800px);
+      }
+    }
+
+    @keyframes floatLetter {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-800px) scale(1);
+        opacity: 0;
+      }
+    }
+  </style>
+  <body>
+    <div id="container">
+      <canvas id="fireworks"></canvas>
+      <div id="text"></div>
+    </div>
+
+    <script>
+      const colors = [
+        "#ff4fd8",
+        "#ff7f00",
+        "#faff00",
+        "#7aff00",
+        "#00ffd9",
+        "#00c3ff",
+        "#9400ff",
+        "#ff007f",
+        "#ff0000",
+      ];
+
+      const message = "HAPPY\nBIRTHDAY!";
+      const textContainer = document.getElementById("text");
+
+      // Create each letter
+      [...message].forEach((char, index) => {
+        const span = document.createElement("span");
+        span.classList.add("letter");
+        span.style.color = colors[index % colors.length];
+        span.textContent = char === "\n" ? "\n" : char;
+        if (char === "\n")
+          textContainer.appendChild(document.createElement("br"));
+        else textContainer.appendChild(span);
+      });
+
+      const canvas = document.getElementById("fireworks");
+      const ctx = canvas.getContext("2d");
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      class Firework {
+        constructor(x, y, color, target) {
+          this.x = x;
+          this.y = canvas.height;
+          this.tx = x;
+          this.ty = y;
+          this.color = color;
+          this.history = [];
+          this.target = target;
+          this.done = false;
+        }
+
+        update() {
+          const dx = (this.tx - this.x) * 0.03;
+          const dy = (this.ty - this.y) * 0.03;
+          this.history.push({ x: this.x, y: this.y });
+          if (this.history.length > 10) this.history.shift();
+          this.x += dx;
+          this.y += dy;
+
+          if (Math.abs(this.tx - this.x) < 3 && Math.abs(this.ty - this.y) < 3) {
+            this.done = true;
+            revealLetter(this.target);
+          }
+        }
+
+        draw(ctx) {
+          ctx.beginPath();
+          for (let i = this.history.length - 1; i >= 1; i--) {
+            const p1 = this.history[i];
+            const p2 = this.history[i - 1];
+            ctx.strokeStyle = this.color;
+            ctx.lineWidth = i / 2;
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+          }
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
+          ctx.fillStyle = this.color;
+          ctx.fill();
+        }
+      }
+
+      // Add firework splash effect from index.html
+      function createFireworkSplash(x, y) {
+        const colors = ["#ff0040", "#00ffd5", "#ffd500", "#00ff00", "#ff00ff"];
+        const particles = [];
+
+        for (let i = 0; i < 30; i++) {
+          particles.push({
+            x,
+            y,
+            angle: Math.random() * 2 * Math.PI,
+            speed: Math.random() * 2 + 0.5,
+            radius: Math.random() * 4 + 3,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            alpha: 1,
+            fadeSpeed: Math.random() * 0.008 + 0.003,
+          });
+        }
+
+        const interval = setInterval(() => {
+          particles.forEach((p) => {
+            p.x += Math.cos(p.angle) * p.speed;
+            p.y += Math.sin(p.angle) * p.speed;
+            p.alpha -= p.fadeSpeed;
+          });
+
+          ctx.globalCompositeOperation = "lighter";
+          particles.forEach((p) => {
+            if (p.alpha > 0) {
+              ctx.beginPath();
+              ctx.arc(p.x, p.y, p.radius, 0, 2 * Math.PI);
+              ctx.fillStyle = `rgba(${hexToRgb(p.color)},${p.alpha})`;
+              ctx.fill();
+            }
+          });
+          // Reset composite operation to default
+          ctx.globalCompositeOperation = "source-over";
+
+          // Check if all particles have faded
+          const allFaded = particles.every(p => p.alpha <= 0);
+          if (allFaded) {
+            clearInterval(interval);
+            // Start letter floating after smoke fully fades
+            setTimeout(() => {
+              const letter = document.querySelector(`[data-letter="${x}-${y}"]`);
+              if (letter) {
+                // Create balloon when starting to float
+                if (letter.textContent.trim() !== "" && letter.textContent !== "\n") {
+                  const balloon = document.createElement("div");
+                  balloon.classList.add("balloon");
+                  balloon.style.background = letter.style.color;
+                  
+                  // Add string to balloon
+                  const string = document.createElement("div");
+                  string.classList.add("string");
+                  balloon.appendChild(string);
+                  
+                  letter.appendChild(balloon);
+                }
+                
+                letter.style.animation = "floatLetter 5s ease-in forwards";
+              }
+            }, 58000);
+          }
+        }, 30);
+      }
+
+      function hexToRgb(hex) {
+        hex = hex.replace("#", "");
+        const bigint = parseInt(hex, 16);
+        const r = (bigint >> 16) & 255;
+        const g = (bigint >> 8) & 255;
+        const b = bigint & 255;
+        return `${r},${g},${b}`;
+      }
+
+      const letters = Array.from(document.querySelectorAll(".letter"));
+      let fireworks = [];
+
+      function revealLetter(span) {
+        span.style.opacity = 1;
+        span.style.transform = "scale(1)";
+
+        // Create firework splash at letter position
+        const rect = span.getBoundingClientRect();
+        const x = rect.left + rect.width / 2;
+        const y = rect.top + rect.height / 2;
+        
+        // Add data attribute to identify the letter
+        span.setAttribute('data-letter', `${x}-${y}`);
+        
+        createFireworkSplash(x, y);
+
+        // Don't create balloon here - it will be created after smoke fades
+      }
+
+      function launchFireworks() {
+        let delay = 0;
+        const totalLetters = letters.filter(letter => letter.textContent !== "\n" && letter.textContent !== " ").length;
+        const totalDuration = 58000; // 58 seconds in milliseconds
+        const delayBetweenLetters = totalDuration / totalLetters;
+        
+        letters.forEach((letter, i) => {
+          if (letter.textContent === "\n" || letter.textContent === " ") return;
+
+          const rect = letter.getBoundingClientRect();
+          const x = rect.left + rect.width / 2;
+          const y = rect.top + rect.height / 2;
+
+          setTimeout(() => {
+            const color = colors[i % colors.length];
+            fireworks.push(new Firework(x, y, color, letter));
+          }, delay);
+          delay += delayBetweenLetters;
+        });
+      }
+
+      function animate() {
+        ctx.fillStyle = "rgba(0,0,0,0.2)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        fireworks.forEach((fw) => {
+          fw.update();
+          fw.draw(ctx);
+        });
+
+        fireworks = fireworks.filter((fw) => !fw.done);
+
+        requestAnimationFrame(animate);
+      }
+
+      launchFireworks();
+      animate();
+    </script>
+  </body>
+</html>

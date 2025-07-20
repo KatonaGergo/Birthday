@@ -1,0 +1,1844 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="scroll-restoration" content="manual" />
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="jscex.min.js"></script>
+    <script type="text/javascript" src="jscex-parser.js"></script>
+    <script type="text/javascript" src="jscex-jit.js"></script>
+    <script type="text/javascript" src="jscex-builderbase.min.js"></script>
+    <script type="text/javascript" src="jscex-async.min.js"></script>
+    <script type="text/javascript" src="jscex-async-powerpack.min.js"></script>
+    <script type="text/javascript" src="love.js" charset="utf-8"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/@finsweet/attributes-scrolldisable@1/scrolldisable.js"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Michroma&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      function playAudio() {
+        var audio = document.getElementById("myAudio");
+        audio.play();
+      }
+    </script>
+    <title>For you.</title>
+  </head>
+  <body>
+    <!--Loading-->
+    <div class="preloader">
+      <video id="preloader-video" autoplay muted loop playsinline>
+        <source src="neon_pink_background.mp4" type="video/mp4" />
+      </video>
+
+      <svg id="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+        <path
+          d="M86.4 5.5L61.8 47.6C58 54.1 56 61.6 56 69.2L56 72c0 22.1 17.9 40 40 40s40-17.9 40-40l0-2.8c0-7.6-2-15-5.8-21.6L105.6 5.5C103.6 2.1 100 0 96 0s-7.6 2.1-9.6 5.5zm128 0L189.8 47.6c-3.8 6.5-5.8 14-5.8 21.6l0 2.8c0 22.1 17.9 40 40 40s40-17.9 40-40l0-2.8c0-7.6-2-15-5.8-21.6L233.6 5.5C231.6 2.1 228 0 224 0s-7.6 2.1-9.6 5.5zM317.8 47.6c-3.8 6.5-5.8 14-5.8 21.6l0 2.8c0 22.1 17.9 40 40 40s40-17.9 40-40l0-2.8c0-7.6-2-15-5.8-21.6L361.6 5.5C359.6 2.1 356 0 352 0s-7.6 2.1-9.6 5.5L317.8 47.6zM128 176c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 48c-35.3 0-64 28.7-64 64l0 71c8.3 5.2 18.1 9 28.8 9c13.5 0 27.2-6.1 38.4-13.4c5.4-3.5 9.9-7.1 13-9.7c1.5-1.3 2.7-2.4 3.5-3.1c.4-.4 .7-.6 .8-.8l.1-.1s0 0 0 0s0 0 0 0s0 0 0 0s0 0 0 0c3.1-3.2 7.4-4.9 11.9-4.8s8.6 2.1 11.6 5.4c0 0 0 0 0 0s0 0 0 0l.1 .1c.1 .1 .4 .4 .7 .7c.7 .7 1.7 1.7 3.1 3c2.8 2.6 6.8 6.1 11.8 9.5c10.2 7.1 23 13.1 36.3 13.1s26.1-6 36.3-13.1c5-3.5 9-6.9 11.8-9.5c1.4-1.3 2.4-2.3 3.1-3c.3-.3 .6-.6 .7-.7l.1-.1c3-3.5 7.4-5.4 12-5.4s9 2 12 5.4l.1 .1c.1 .1 .4 .4 .7 .7c.7 .7 1.7 1.7 3.1 3c2.8 2.6 6.8 6.1 11.8 9.5c10.2 7.1 23 13.1 36.3 13.1s26.1-6 36.3-13.1c5-3.5 9-6.9 11.8-9.5c1.4-1.3 2.4-2.3 3.1-3c.3-.3 .6-.6 .7-.7l.1-.1c2.9-3.4 7.1-5.3 11.6-5.4s8.7 1.6 11.9 4.8c0 0 0 0 0 0s0 0 0 0s0 0 0 0l.1 .1c.2 .2 .4 .4 .8 .8c.8 .7 1.9 1.8 3.5 3.1c3.1 2.6 7.5 6.2 13 9.7c11.2 7.3 24.9 13.4 38.4 13.4c10.7 0 20.5-3.9 28.8-9l0-71c0-35.3-28.7-64-64-64l0-48c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 48-64 0 0-48c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 48-64 0 0-48zM448 394.6c-8.5 3.3-18.2 5.4-28.8 5.4c-22.5 0-42.4-9.9-55.8-18.6c-4.1-2.7-7.8-5.4-10.9-7.8c-2.8 2.4-6.1 5-9.8 7.5C329.8 390 310.6 400 288 400s-41.8-10-54.6-18.9c-3.5-2.4-6.7-4.9-9.4-7.2c-2.7 2.3-5.9 4.7-9.4 7.2C201.8 390 182.6 400 160 400s-41.8-10-54.6-18.9c-3.7-2.6-7-5.2-9.8-7.5c-3.1 2.4-6.8 5.1-10.9 7.8C71.2 390.1 51.3 400 28.8 400c-10.6 0-20.3-2.2-28.8-5.4L0 480c0 17.7 14.3 32 32 32l384 0c17.7 0 32-14.3 32-32l0-85.4z"
+        />
+      </svg>
+      <div class="preloader-text">
+        <p>Loading<span id="dots"></span> Stay tuned! ❤️</p>
+      </div>
+    </div>
+
+    <div id="animated-bg"></div>
+    <div id="neon-cursor"></div>
+
+    <!-- loginScreen Overlay (After loading, input request) -->
+    <div id="loginScreen">
+      <div id="neon-cursor-layer"></div>
+
+      <div id="login-container" style="display: none">
+        <input
+          type="text"
+          id="date1"
+          placeholder="Enter your birthday (DD/MM/YYYY)"
+        />
+        <input
+          type="text"
+          id="date2"
+          placeholder="Enter the day when we met (DD/MM/YYYY)"
+        />
+        <button onclick="checkDates()"><span>Unlock</span></button>
+        <p
+          id="error-msg"
+          style="color: #ff99cc; font-size: 14px; margin-top: 10px"
+        ></p>
+      </div>
+    </div>
+
+    <!--Initializer, welcome screen-->
+
+    <div class="initializer">
+      <div class="video-overlay-text">
+        <p>
+          Hey Kaysha. Welcome to the world I built just for you. <br />
+          Your Birthday. <br />
+          Redefined. ❤️
+        </p>
+      </div>
+      <video id="background-video" autoplay muted loop>
+        <source src="rose_petals_loop_1080p.mp4" type="video/mp4" />
+      </video>
+      <div id="scroll-indicator">
+        <p>Scroll down</p>
+      </div>
+      <div class="chevron-wrapper">
+        <svg
+          viewBox="0 0 200 120"
+          class="chevron-svg"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <!-- FLOWING ANIMATED FILTER -->
+            <filter id="liquidFlow" x="0%" y="0%" width="100%" height="100%">
+              <feTurbulence
+                id="turbulence"
+                type="turbulence"
+                baseFrequency="0.01"
+                numOctaves="2"
+                result="turbulence"
+              />
+              <feDisplacementMap
+                in2="turbulence"
+                in="SourceGraphic"
+                scale="20"
+                xChannelSelector="R"
+                yChannelSelector="G"
+              />
+              <animate
+                xlink:href="#turbulence"
+                attributeName="baseFrequency"
+                dur="8s"
+                values="0.01; 0.02; 0.01"
+                repeatCount="indefinite"
+              />
+            </filter>
+          </defs>
+
+          <!-- V SHAPE PATH (used both for stroke and flow) -->
+          <path
+            d="M20,20 L100,100 L180,20"
+            stroke="url(#flowGradient)"
+            stroke-width="20"
+            fill="transparent"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            filter="url(#liquidFlow)"
+            class="chevron-flow"
+          />
+
+          <!-- OUTLINE ON TOP for glow -->
+          <path
+            d="M20,20 L100,100 L180,20"
+            stroke="#ff00cc"
+            stroke-width="4"
+            fill="transparent"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="chevron-outline"
+          />
+
+          <!-- GRADIENT FLOW COLOR (black to pink) -->
+          <linearGradient id="flowGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#000000" />
+            <stop offset="100%" stop-color="#ff00cc" />
+          </linearGradient>
+        </svg>
+      </div>
+    </div>
+
+    <!--Main screen-->
+    <video id="new-video" muted>
+      <source src="couple.mp4" type="video/mp4" />
+    </video>
+
+    <div class="hamburger-wrapper" id="hamburgerWrapper">
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="dropdown" id="dropdown">
+        <button onclick="window.location.href='#roadmap'">Back to the Roadmap</button>
+      </div>
+    </div>
+
+    <!--Tree and Book Side by Side-->
+    <div id="main">
+      <audio height="100" width="100" id="myAudio">
+        <source src="audiolenne.mp3" type="audio/mp3" />
+        <embed height="100" width="100" src="aud.mp3" />
+      </audio>
+      <div class="card">
+        <div class="cover">
+          <img src="cover.png" alt="" srcset="" />
+          <img src="back.jpg" alt="" srcset="" />
+        </div>
+        <div class="content">
+          <h2>A Part Of You</h2>
+          <p>
+            <span id="happyBirthdayText" style="color:#ff00cc; cursor:pointer; font-size:1.3em; font-weight:bold;">HAPPY BIRTHDAY</span>
+          </p>
+        </div>
+      </div>
+      <div id="birthday-animation-modal">
+        <div class="birthday-bg-overlay"></div>
+        <iframe id="birthday-animation-iframe" src="" frameborder="0" allowfullscreen></iframe>
+        <div class="modal-close-indicator">Click outside the box to close it, Kaysha ❤️</div>
+      </div>
+      <div id="wrap" style="background: url()">
+        <div id="text">
+          <div id="code"></div>
+        </div>
+        <canvas id="canvas"></canvas>
+      </div>
+    </div>
+
+    <!--Cursor effect-->
+    <div id="smoke"></div>
+    <div id="neon-frame"></div>
+
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+      /*Main screen font */
+      @font-face {
+        font-family: "Romantic";
+        src: url("Pinky_Cupid.otf") format("opentype");
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      /* Loading screen */
+
+      #svg {
+        height: 150px;
+        width: 150px;
+        stroke: #fff;
+        fill-opacity: 0;
+        stroke-width: 3px;
+        stroke-dasharray: 4500;
+        animation: draw 16s ease;
+
+        filter: drop-shadow(0 0 5px #ff00ff) drop-shadow(0 0 10px #ff00ff)
+          drop-shadow(0 0 20px #ff00ff) drop-shadow(0 0 30px #ff00ff);
+      }
+
+      @keyframes draw {
+        0% {
+          stroke-dashoffset: 4500;
+        }
+
+        100% {
+          stroke-dashoffset: 0;
+        }
+      }
+
+      .preloader {
+        position: fixed;
+        inset: 0;
+        background-color: black;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 100000; /* above everything */
+        transition: opacity 1s ease;
+      }
+
+      .preloader.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .preloader i {
+        font-size: 64px;
+        margin-bottom: 20px;
+        color: white;
+      }
+
+      .preloader-text {
+        font-size: 18px;
+        font-family: "Michroma", sans-serif;
+      }
+
+      .preloader video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+        opacity: 1;
+      }
+
+      /* Input request screen */
+
+      #login-container.animate-in {
+        animation: appearWithSparkles 1.2s ease-out forwards;
+        opacity: 0;
+        transform: scale(0.5);
+      }
+
+      @keyframes appearWithSparkles {
+        0% {
+          opacity: 0;
+          transform: scale(0.5);
+          filter: blur(10px);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+          filter: blur(0);
+        }
+      }
+
+      #login-container {
+        position: relative;
+        backdrop-filter: blur(10px);
+        background: rgba(0, 0, 0, 0.4);
+        border: 2px solid #ff00cc;
+        border-radius: 12px;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        box-shadow: 0 0 30px #ff00cc;
+        z-index: 10001;
+      }
+
+      #login-container input {
+        padding: 10px 15px;
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        border-radius: 6px;
+        color: #fff;
+        width: 250px;
+        font-size: 14px;
+        outline: none;
+      }
+
+      #login-container input:focus {
+        outline: none;
+        box-shadow: 0 0 10px #ff00ccaa, 0 0 20px #ff00cc66;
+        background: rgba(255, 255, 255, 0.15);
+        transition: box-shadow 0.4s ease, background 0.4s ease;
+      }
+
+      #login-container input::placeholder {
+        transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+
+      #login-container input:focus::placeholder {
+        transform: translateY(-6px);
+        opacity: 0.7;
+      }
+
+      /*TO-DO gradient styling button */
+      #login-container button {
+        position: relative;
+        overflow: hidden;
+        transition: background 0.3s ease;
+      }
+
+      #login-container button span {
+        position: relative;
+        z-index: 2;
+        color: #000;
+        font-weight: bold;
+        user-select: none;
+      }
+
+      #login-container button::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0);
+        transition: background 0.4s ease;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      #login-container button:hover::before {
+        background: rgba(0, 0, 0, 0.5); /* Smooth fade to black */
+      }
+
+      #login-container button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 6px;
+        background: #ff00cc;
+        color: #000;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s ease;
+      }
+
+      #login-container button:hover {
+        background: #ff33cc;
+      }
+
+      .sparkle {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background: radial-gradient(
+          circle,
+          #fff 0%,
+          #ff99cc 80%,
+          transparent 100%
+        );
+        border-radius: 50%;
+        pointer-events: none;
+        opacity: 0.8;
+        animation: sparkle-fade 1s ease-out forwards;
+      }
+
+      @keyframes sparkle-fade {
+        0% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(3);
+          opacity: 0;
+        }
+      }
+
+      #animated-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        overflow-x: hidden;
+        height: 100vh;
+        z-index: -10;
+        background: radial-gradient(circle at center, #ff00cc, #000000);
+        pointer-events: none;
+        filter: blur(120px) brightness(1.3);
+        transition: background 0.2s ease-out;
+        animation: bgPulse 12s ease-in-out infinite alternate;
+      }
+
+      @keyframes bgPulse {
+        0% {
+          filter: blur(100px) brightness(1.2);
+        }
+        100% {
+          filter: blur(140px) brightness(1.4);
+        }
+      }
+
+      #neon-cursor {
+        position: fixed;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: radial-gradient(circle, #ff00cc 0%, #000 80%);
+        mix-blend-mode: screen;
+        pointer-events: none;
+        z-index: 9999;
+        box-shadow: 0 0 20px #ff00cc88;
+        transition: transform 0.05s ease;
+      }
+
+      #loginScreen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #000000, #ff00cc 70%);
+        z-index: 9999;
+        overflow: hidden;
+        animation: neonPulse 4s ease-in-out infinite alternate;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      @keyframes neonPulse {
+        0% {
+          filter: brightness(1) drop-shadow(0 0 10px #ff00cc);
+        }
+        100% {
+          filter: brightness(1.2) drop-shadow(0 0 25px #ff00cc);
+        }
+      }
+
+      #neon-cursor-layer {
+        position: absolute;
+        pointer-events: none;
+        width: 100%;
+        height: 100%;
+        z-index: 10000;
+      }
+
+      .neon-dot {
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        background: #ff00cc;
+        border-radius: 50%;
+        filter: drop-shadow(0 0 10px #ff00cc) blur(1px);
+        pointer-events: none;
+        animation: trailFade 1s ease-out forwards;
+      }
+
+      @keyframes trailFade {
+        0% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        100% {
+          opacity: 0;
+          transform: scale(2);
+        }
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Hiding scrollbar, because its ugly... We need to make it as beautiful as the one who receives this gift :) */
+      ::-webkit-scrollbar {
+        width: 0px;
+      }
+
+      body.noscroll,
+      html.noscroll {
+        overflow: hidden;
+        height: 100vh;
+      }
+
+      body,
+      html {
+        cursor: crosshair;
+        height: 200vh;
+        max-width: 100%;
+        overflow-x: hidden;
+      }
+
+      video {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        pointer-events: none;
+        transform-origin: center center;
+      }
+
+      /* Initializer screen */
+      #background-video {
+        z-index: 0;
+      }
+
+      .initializer {
+        display: none;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+        z-index: 1;
+        height: 100vh;
+      }
+
+      #smoke {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 2;
+      }
+
+      .elem {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 2, 204, 0.7) 0%,
+          rgba(0, 0, 0, 0) 80%
+        );
+        pointer-events: none;
+        animation: ripple 5s ease-out forwards;
+        transform-origin: center;
+      }
+
+      @keyframes ripple {
+        0% {
+          transform: scale(1) translateY(0);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(10) translateY(-10px);
+          opacity: 0;
+        }
+      }
+
+      /*
+      .initializer {
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 1s ease;
+      }
+
+      
+      .initializer.visible {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      */
+
+      .chevron-wrapper {
+        position: absolute;
+        bottom: 20px; /* Distance from bottom */
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        transition: transform 0.3s ease;
+        cursor: pointer;
+      }
+
+      .chevron-svg {
+        width: 100%;
+        height: auto;
+        transition: transform 0.4s ease;
+      }
+
+      .chevron-outline {
+        filter: drop-shadow(0 0 4px #ff00cc) drop-shadow(0 0 8px #ff00cc);
+        transition: filter 0.4s ease;
+      }
+
+      .chevron-wrapper:hover .chevron-svg {
+        transform: scale(1.2);
+      }
+
+      .chevron-wrapper:hover .chevron-outline {
+        filter: drop-shadow(0 0 10px #ff00cc) drop-shadow(0 0 18px #ff00cc);
+      }
+
+      #scroll-indicator {
+        position: absolute;
+        bottom: 5px;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        opacity: 0;
+        color: #fff;
+        font-family: "Romantic", cursive;
+        text-shadow: 0 0 10px #ff99cc, 0 0 20px #ff66cc;
+        pointer-events: none;
+      }
+
+      #scroll-indicator p,
+      #scroll-indicator span {
+        font-size: 1.2rem;
+        color: #ff99cc;
+        text-shadow: 0 0 5px #ff99cc, 0 0 10px #ff99cc, 0 0 20px #ff99cc;
+        animation: glowFadeUp 2s ease-out forwards;
+      }
+
+      #scroll-indicator span {
+        font-size: 1.8rem;
+        display: block;
+        margin-top: 4px;
+      }
+
+      @keyframes glowFadeUp {
+        0% {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .video-overlay-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 10;
+        text-align: center;
+        color: #fff;
+        font-family: "Romantic", cursive;
+        font-size: 2rem;
+        text-shadow: 0 0 10px #ff99cc, 0 0 20px #ff66cc;
+        pointer-events: none;
+        opacity: 0;
+        animation: softFadeUp 2.5s ease-out forwards,
+          softPulse 3s ease-in-out infinite;
+        animation-delay: 1s, 1.5s;
+      }
+
+      @keyframes softPulse {
+        0%,
+        100% {
+          text-shadow: 0 0 10px #ff99cc, 0 0 20px #ff66cc;
+        }
+        50% {
+          text-shadow: 0 0 14px #ff99cc, 0 0 26px #ff66cc;
+        }
+      }
+
+      @keyframes softFadeUp {
+        0% {
+          opacity: 0;
+          transform: translate(-50%, -50%) scale(0.8);
+          filter: blur(4px);
+        }
+        60% {
+          filter: blur(1px);
+        }
+        100% {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(1);
+          filter: blur(0);
+        }
+      }
+
+      /* Main screen */
+
+      #new-video {
+        z-index: 1;
+        opacity: 0;
+      }
+
+      .hamburger-wrapper {
+        position: fixed;
+        top: 25px;
+        right: 25px;
+        z-index: 9999;
+        display: none;
+      }
+
+      .hamburger {
+        width: 30px;
+        height: 22px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .hamburger span {
+        display: block;
+        height: 4px;
+        background: #ff00cc;
+        border-radius: 4px;
+        transition: 0.3s ease;
+      }
+
+      /* Hamburger to X transition */
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+      }
+
+      .dropdown {
+        margin-top: 15px;
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+        background: rgba(0, 0, 0, 0.5);
+        border: 1px solid #ff00cc;
+        padding: 15px 20px;
+        border-radius: 10px;
+        animation: fadeIn 0.3s ease;
+      }
+
+      .dropdown button {
+        background: transparent;
+        padding: 10px;
+        border: 1px solid #ff00cc;
+        outline: none;
+        color: #fff;
+        cursor: pointer;
+        position: relative;
+        z-index: 0;
+        border-radius: 8px;
+        font-family: "Michroma", sans-serif;
+        font-size: 14px;
+      }
+
+      .dropdown button::after {
+        content: "";
+        z-index: -1;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: #333;
+        left: 0;
+        top: 0;
+        border-radius: 8px;
+      }
+      /* glow */
+      .dropdown button::before {
+        content: "";
+        background: linear-gradient(
+          45deg,
+          #ff0000,
+          #002bff,
+          #ff00c8
+        );
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        background-size: 300%;
+        z-index: -1;
+        width: calc(100% + 4px);
+        height: calc(100% + 4px);
+        filter: blur(8px);
+        animation: glowing 10s linear infinite;
+        transition: opacity 0.3s ease-in-out;
+        border-radius: 8px;
+        opacity: 0;
+      }
+
+      @keyframes glowing {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .dropdown button:hover::before {
+        opacity: 1;
+      }
+
+      .dropdown button:active:after {
+        background: transparent;
+      }
+
+      .dropdown button:active {
+        color: #000;
+        font-weight: bold;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        background-image: url();
+        background-size: cover;
+        background-repeat: no-repeat;
+        font-size: 14px;
+        font-family: sans-serif;
+        color: white;
+        height: auto;
+        overflow-y: auto;
+      }
+
+      #canvas {
+        display: block;
+        margin: 0 auto;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        pointer-events: none;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      #main {
+        display: none;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        gap: 2px; /* space between book and tree */
+      }
+      #wrap {
+        position: relative;
+        width: 400px;
+        height: 680px;
+        margin-top: 10px;
+      }
+
+      #text {
+        width: 272px;
+        height: 560px;
+        left: 188px;
+        top: 80px;
+        position: absolute;
+      }
+
+      #code {
+        display: none;
+        color: rgb(196, 255, 255);
+        font-size: 16px;
+        margin-top: 70px;
+        line-height: 25px;
+        font-size: larger;
+        font-weight: bolder;
+      }
+
+      .hand {
+        cursor: pointer;
+      }
+
+      /*Book*/
+      .card {
+        display: none;
+        position: relative;
+        width: 300px;
+        height: 400px;
+        background-color: #fff;
+        border-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        cursor: pointer;
+        box-shadow: 10px 0 20px rgba(0, 0, 0, 0.4),
+          inset 300px 0 50px rgba(0, 0, 0, 0.4);
+        transform: perspective(2000px) rotateZ(0);
+        transform-style: preserve-3d;
+        transition: all 1s ease;
+        z-index: 1001;
+      }
+
+      .cover {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        transform-origin: left;
+        transform-style: preserve-3d;
+        transition: all 1s ease;
+      }
+
+      .cover img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        backface-visibility: hidden;
+      }
+
+      .cover img:nth-child(1) {
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+      }
+
+      .cover img:nth-child(2) {
+        transform: rotateY(180deg);
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+      }
+
+      .card:hover {
+        transform: perspective(2000px) rotateZ(-10deg);
+        box-shadow: 10px 0 20px rgba(0, 0, 0, 0.4),
+          inset 300px 0 50px rgba(0, 0, 0, 0.4);
+      }
+
+      .card:hover .cover {
+        transform: rotateY(-135deg);
+        box-shadow: 10px 0 20px rgba(0, 0, 0, 0.4);
+      }
+
+      .content {
+        width: 100%;
+        height: 100%;
+        padding: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        font-size: 12px;
+      }
+
+      .content h2 {
+        margin-bottom: 1rem;
+      }
+
+      /* Making it responsive for cute little phones (khm, Kaysha will probably use a phone) */
+      /* Responsive for phones */
+      @media (max-width: 480px) {
+        #login-container {
+          padding: 20px;
+          width: 90vw; /* almost full screen width */
+          max-width: 350px;
+        }
+
+        #login-container input {
+          width: 100%; /* full container width */
+          font-size: 16px;
+          padding: 12px 15px;
+        }
+
+        #login-container button {
+          width: 100%;
+          padding: 14px 0;
+          font-size: 18px;
+          border-radius: 8px;
+        }
+
+        .preloader i {
+          font-size: 48px; /* smaller icon on phones */
+        }
+
+        .preloader-text {
+          font-size: 16px;
+          font-family: "Michroma", sans-serif;
+        }
+
+        #neon-cursor {
+          width: 20px;
+          height: 20px;
+        }
+
+        @media (max-width: 768px) {
+          #login-container {
+            width: 90%;
+            padding: 20px;
+          }
+
+          .preloader-text {
+            font-size: 14px;
+          }
+
+          .video-overlay-text {
+            font-size: 1.2rem;
+          }
+
+          #svg {
+            width: 100px;
+            height: 100px;
+          }
+        }
+      }
+      #birthday-animation-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: url('img.png') center center / cover no-repeat;
+        z-index: 3000;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transform: scale(0.97);
+        transition: opacity 0.7s cubic-bezier(.4,2,.6,1), transform 0.7s cubic-bezier(.4,2,.6,1);
+      }
+      #birthday-animation-modal.active {
+        display: flex;
+        opacity: 1;
+        transform: scale(1);
+      }
+      #birthday-animation-modal .birthday-bg-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(255,0,204,0.10); /* soft pinkish glow, adjust as desired */
+        z-index: 1;
+        pointer-events: none;
+        border-radius: 18px;
+      }
+      #birthday-animation-iframe {
+        width: 90vw;
+        height: 90vh;
+        border-radius: 18px;
+        box-shadow: 0 0 40px #ff00cc99, 0 0 80px #fff2;
+        background: #fff;
+        position: relative;
+        z-index: 2;
+      }
+      #birthday-animation-modal .modal-close-indicator {
+        position: absolute;
+        bottom: 32px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #fff;
+        background: rgba(0,0,0,0.45);
+        padding: 8px 22px;
+        border-radius: 16px;
+        font-size: 1.1em;
+        font-family: 'Michroma', sans-serif;
+        letter-spacing: 0.04em;
+        z-index: 10;
+        box-shadow: 0 2px 12px #ff00cc55;
+        pointer-events: none;
+        user-select: none;
+        opacity: 0.92;
+      }
+    </style>
+
+    <script>
+      localStorage.removeItem("loginCount");
+      sessionStorage.clear();
+
+      document.body.classList.add("noscroll");
+
+      // When you want to enable scroll (when initializer appears)
+      function enableScroll() {
+        document.body.classList.remove("noscroll");
+      }
+
+      //Preloader loading text appearance
+      gsap.fromTo(
+        ".preloader p",
+        {
+          y: 50,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 2,
+          delay: 0.5,
+        }
+      );
+
+      //Loading dots
+      const dotsEl = document.getElementById("dots");
+      let dotCount = 1;
+      const dotInterval = setInterval(() => {
+        dotCount = (dotCount % 4) + 1;
+        dotsEl.textContent = ".".repeat(dotCount);
+      }, 500);
+
+      //Cursor effect in the loading area
+
+      const neonLayer = document.getElementById("neon-cursor-layer");
+
+      function createNeonDot(e) {
+        const dot = document.createElement("div");
+        dot.classList.add("neon-dot");
+        dot.style.left = `${e.clientX}px`;
+        dot.style.top = `${e.clientY}px`;
+        neonLayer.appendChild(dot);
+        setTimeout(() => dot.remove(), 1000);
+      }
+
+      //Input request screen
+
+      function spawnSparkles(container) {
+        const sparkleCount = 20;
+        for (let i = 0; i < sparkleCount; i++) {
+          const sparkle = document.createElement("div");
+          sparkle.classList.add("sparkle");
+
+          const x = Math.random() * container.offsetWidth;
+          const y = Math.random() * container.offsetHeight;
+
+          sparkle.style.left = `${container.offsetLeft + x}px`;
+          sparkle.style.top = `${container.offsetTop + y}px`;
+
+          document.body.appendChild(sparkle);
+          setTimeout(() => sparkle.remove(), 1000);
+        }
+      }
+
+      window.addEventListener("load", () => {
+        const preloader = document.querySelector(".preloader");
+        const loginScreen = document.getElementById("loginScreen");
+        const login = document.getElementById("login-container");
+
+        login.style.display = "none";
+        hamburger.style.display = "none";
+
+        setTimeout(() => {
+          preloader.classList.add("hidden");
+
+          setTimeout(() => {
+            preloader.style.display = "none";
+            login.style.display = "flex";
+            login.classList.add("animate-in");
+            spawnSparkles(login);
+            document.addEventListener("mousemove", createNeonDot);
+          }, 1000);
+        }, 5000);
+      });
+
+      //Input field management
+
+      window.addEventListener("load", () => {
+        const preloader = document.querySelector(".preloader");
+        const loginScreen = document.getElementById("loginScreen");
+        const login = document.getElementById("login-container");
+        const unlockReady = sessionStorage.getItem("unlockReady");
+        const loginCount = parseInt(localStorage.getItem("loginCount")) || 0;
+
+        if (unlockReady) {
+          sessionStorage.removeItem("unlockReady");
+          setTimeout(() => {
+            transitionToInitializer();
+          }, 50);
+          return;
+        }
+
+        // Check if user already completed all 3 logins
+        if (loginCount >= 3) {
+          sessionStorage.setItem("unlockReady", "true");
+          setTimeout(() => {
+            transitionToInitializer();
+          }, 50);
+          return;
+        }
+
+        // Show preloader only if no submission was made this session
+        if (!sessionStorage.getItem("submittedOnce")) {
+          login.style.display = "none";
+          hamburger.style.display = "none";
+
+          setTimeout(() => {
+            preloader.classList.add("hidden");
+            setTimeout(() => {
+              preloader.style.display = "none";
+              login.style.display = "flex";
+              login.classList.add("animate-in");
+              spawnSparkles(login);
+              document.addEventListener("mousemove", createNeonDot);
+            }, 1000);
+          }, 5000);
+        } else {
+          // Skip preloader
+          preloader.style.display = "none";
+          login.style.display = "flex";
+          const feedback = sessionStorage.getItem("feedbackMessage");
+          if (feedback) {
+            const error = document.getElementById("error-msg");
+            error.textContent = feedback;
+            sessionStorage.removeItem("feedbackMessage"); // Clear so its not reused
+          }
+          login.classList.add("animate-in");
+          spawnSparkles(login);
+          document.addEventListener("mousemove", createNeonDot);
+        }
+      });
+
+      // -------- LOGIN LOGIC --------
+
+      const correctDate2 = "28/01/2025";
+      const maxBirthdayTries = 3;
+
+      async function checkDates() {
+        const input1 = document.getElementById("date1").value.trim(); // birthday
+        const input2 = document.getElementById("date2").value.trim(); // date when we met
+        const error = document.getElementById("error-msg");
+
+        let loginCount = parseInt(localStorage.getItem("loginCount")) || 0;
+
+        if (input2 === correctDate2) {
+          loginCount++;
+          localStorage.setItem("loginCount", loginCount);
+          sessionStorage.setItem("submittedOnce", "true"); // This prevents preloader on reload
+
+          if (loginCount < maxBirthdayTries) {
+            const remaining = maxBirthdayTries - loginCount;
+            const msg = `The date when we met is correct. Please enter your birthday ${remaining} more time${
+              remaining === 1 ? "" : "s"
+            }.`;
+
+            error.textContent = msg;
+
+            await fetch("https://birthday-gift-ncc0.onrender.com/save-dates", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ birthday: input1, metDate: input2 }),
+            });
+          } else {
+            error.textContent = "";
+            transitionToInitializer();
+          }
+        } else {
+          error.textContent = "That date isnt right. Try again.";
+        }
+      }
+
+      function transitionToInitializer() {
+        const loginScreen = document.getElementById("loginScreen");
+        loginScreen.style.transition = "opacity 1s ease";
+        loginScreen.style.opacity = "0";
+        setTimeout(() => {
+          loginScreen.remove();
+          // Force scroll to top before showing initializer
+          window.scrollTo(0, 0);
+          showInitializer();
+        }, 1000);
+      }
+
+      function showInitializer() {
+        document.removeEventListener("mousemove", createNeonDot);
+        const initializer = document.querySelector(".initializer");
+        const initializerText = document.querySelector(".video-overlay-text");
+
+        // Ensure we're at the top of the page
+        window.scrollTo(0, 0);
+
+        initializerText.style.animation = "none";
+        initializerText.offsetHeight; // force reflow
+        initializerText.style.animation =
+          "softFadeUp 2.5s ease-out forwards, softPulse 3s ease-in-out infinite";
+
+        initializer.style.display = "block";
+        initializer.style.opacity = "0";
+        initializerText.style.opacity = "0";
+        spawnSparkles(initializer);
+        setTimeout(() => {
+          initializer.style.transition = "opacity 1.5s ease";
+          initializer.style.opacity = "1";
+
+          // Animate text inside initializer
+          initializerText.style.animation =
+            "softFadeUp 2.5s ease-out forwards, softPulse 3s ease-in-out infinite";
+          initializerText.style.opacity = "1";
+
+          // Show hamburger, scroll, refresh triggers
+          hamburger.style.display = "flex";
+          enableScroll();
+          ScrollTrigger.refresh();
+          const scrollIndicator = document.getElementById("scroll-indicator");
+          scrollIndicator.style.opacity = "1";
+
+          // Add scroll event listener
+          window.addEventListener(
+            "scroll",
+            () => {
+              const scrollIndicator =
+                document.getElementById("scroll-indicator");
+              scrollIndicator.style.opacity = "1";
+            },
+            300
+          );
+          
+          // Set up the pink circle scroll listener only after initializer is shown
+          setupPinkCircleScrollListener();
+        }, 300);
+      }
+
+      //Cursor effect in the initializer area
+      const smoke = document.getElementById("smoke");
+      const video1 = document.getElementById("background-video");
+      const video2 = document.getElementById("new-video");
+
+      function createSmoke(e) {
+        const elem = document.createElement("div");
+        elem.classList.add("elem");
+        elem.style.left = `${e.clientX - 5}px`;
+        elem.style.top = `${e.clientY - 5}px`;
+        smoke.appendChild(elem);
+        elem.addEventListener("animationend", () => elem.remove());
+      }
+
+      document.addEventListener("mousemove", createSmoke);
+
+      // Register ScrollTrigger
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Transition from initializer / welcome screen to the main with GSAP
+      video2.pause();
+      video2.currentTime = 0;
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: "body",
+          start: "top top",
+          end: "100% top",
+          scrub: true,
+          onEnter: () => {
+            video2.currentTime = 0;
+            video2.play();
+            document.removeEventListener("mousemove", createSmoke);
+          },
+          onLeaveBack: () => {
+            video2.pause();
+            video2.currentTime = 0;
+            video1.play();
+            document.addEventListener("mousemove", createSmoke);
+          },
+        },
+      });
+
+      tl.to(video1, {
+        scale: 1.5,
+        opacity: 0,
+        ease: "power2.inOut",
+      }).to(
+        video2,
+        {
+          opacity: 1,
+          ease: "power2.inOut",
+        },
+        "<"
+      );
+
+      // Main screen
+
+      const hamburger = document.getElementById("hamburger");
+      const dropdown = document.getElementById("dropdown");
+      const wrapper = document.getElementById("hamburgerWrapper");
+
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        dropdown.style.display = hamburger.classList.contains("active")
+          ? "flex"
+          : "none";
+      });
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      ScrollTrigger.create({
+        trigger: "#new-video",
+        start: "top center",
+        onEnter: () => {
+          hamburger.style.display = "flex";
+          wrapper.style.display = "flex";
+          const canvas = document.querySelector("#canvas");
+          canvas.style.display = "block";
+          canvas.style.opacity = "1";
+          canvas.style.pointerEvents = "auto";
+          canvas.style.position = "fixed";
+          canvas.style.top = "0";
+          canvas.style.left = "0";
+          canvas.style.zIndex = "10";
+
+          text.classList.add("disappear");
+
+          onLeaveBack: () => {
+            hamburger.style.display = "none";
+            wrapper.style.display = "none";
+            dropdown.style.display = "none";
+            hamburger.classList.remove("active");
+            const canvas = document.querySelector("#canvas");
+            canvas.style.display = "none";
+            canvas.style.opacity = "0";
+          };
+        },
+      });
+
+      ScrollTrigger.refresh();
+
+      
+
+      // Neon fluid gradient + cursor glow
+      const animatedBg = document.getElementById("animated-bg");
+      const neonCursor = document.getElementById("neon-cursor");
+
+      document.addEventListener("mousemove", (e) => {
+        const x = e.clientX / window.innerWidth;
+        const y = e.clientY / window.innerHeight;
+
+        // Animate background center based on mouse
+        animatedBg.style.background = `radial-gradient(circle at ${x * 100}% ${
+          y * 100
+        }%, #ff00cc, #000000)`;
+
+        // Move neon cursor
+        neonCursor.style.transform = `translate(${e.clientX - 15}px, ${
+          e.clientY - 15
+        }px)`;
+      });
+
+      //Tree
+
+      function showPinkCircleAnimation() {
+        document.getElementById("main").style.display = "flex";
+        var canvas = $("#canvas");
+
+        if (!canvas[0].getContext) {
+          $("#error").show();
+          return false;
+        }
+
+        var width = canvas.width();
+        var height = canvas.height();
+        canvas.attr("width", width);
+        canvas.attr("height", height);
+
+        // Center point
+        var cx = width / 2;
+        var cy = height * 0.95; // drop from near top
+        var scale = Math.min(width, height) / 540; // base scale for all elements
+
+        // Helper to convert original absolute branch coordinates to responsive, centered ones
+        function convertBranch(branch) {
+          // branch: [x1, y1, x2, y2, x3, y3, radius, length, subBranches]
+          const [x1, y1, x2, y2, x3, y3, radius, length, subBranches] = branch;
+          // The original canvas size was 1080x680, so we use that as the base
+          const baseW = 1080,
+            baseH = 680;
+          function scaleX(x) {
+            return cx + (x - baseW / 2) * (width / baseW);
+          }
+          function scaleY(y) {
+            return cy + (y - baseH) * (height / baseH);
+          }
+          let newSub = undefined;
+          if (Array.isArray(subBranches)) {
+            newSub = subBranches.map(convertBranch);
+          }
+          return [
+            scaleX(x1),
+            scaleY(y1),
+            scaleX(x2),
+            scaleY(y2),
+            scaleX(x3),
+            scaleY(y3),
+            radius * scale,
+            length * scale,
+            newSub,
+          ];
+        }
+
+        // The original branch structure
+        var originalBranches = [
+          [
+            535,
+            680,
+            570,
+            250,
+            500,
+            200,
+            30,
+            100,
+            [
+              [
+                540,
+                500,
+                455,
+                417,
+                340,
+                400,
+                13,
+                100,
+                [[450, 435, 434, 430, 394, 395, 2, 40]],
+              ],
+              [
+                550,
+                445,
+                600,
+                356,
+                680,
+                345,
+                12,
+                100,
+                [[578, 400, 648, 409, 661, 426, 3, 80]],
+              ],
+              [539, 281, 537, 248, 534, 217, 3, 40],
+              [
+                546,
+                397,
+                413,
+                247,
+                328,
+                244,
+                9,
+                80,
+                [
+                  [427, 286, 383, 253, 371, 205, 2, 40],
+                  [498, 345, 435, 315, 395, 330, 4, 60],
+                ],
+              ],
+              [
+                546,
+                357,
+                608,
+                252,
+                678,
+                221,
+                6,
+                100,
+                [[590, 293, 646, 277, 648, 271, 2, 80]],
+              ],
+            ],
+          ],
+        ];
+
+        var branches = originalBranches.map(convertBranch);
+
+        var opts = {
+          seed: {
+            x: cx,
+            color: "rgb(190, 26, 37)",
+            scale: scale * 2,
+          },
+          branch: branches,
+          bloom: {
+            num: Math.floor((width * height) / 1200),
+            width: width,
+            height: height,
+          },
+          footer: {
+            width: width * 0.8,
+            height: Math.max(5, height * 0.012),
+            speed: 10,
+          },
+        };
+
+        var tree = new Tree(canvas[0], width, height, opts);
+        var seed = tree.seed;
+        var foot = tree.footer;
+        var hold = 1;
+
+        canvas
+          .off("click")
+          .off("mousemove")
+          .click(function (e) {
+            var offset = canvas.offset(),
+              x,
+              y;
+            x = e.pageX - offset.left;
+            y = e.pageY - offset.top;
+            if (seed.hover(x, y)) {
+              hold = 0;
+              canvas.unbind("click");
+              canvas.unbind("mousemove");
+              canvas.removeClass("hand");
+            }
+          })
+          .mousemove(function (e) {
+            var offset = canvas.offset(),
+              x,
+              y;
+            x = e.pageX - offset.left;
+            y = e.pageY - offset.top;
+            canvas.toggleClass("hand", seed.hover(x, y));
+          });
+
+        var seedAnimate = eval(
+          Jscex.compile("async", function () {
+            seed.draw();
+            while (hold) {
+              $await(Jscex.Async.sleep(10));
+            }
+            while (seed.canScale()) {
+              seed.scale(0.95);
+              $await(Jscex.Async.sleep(10));
+            }
+            while (seed.canMove()) {
+              seed.move(0, 2 * scale);
+              foot.draw();
+              $await(Jscex.Async.sleep(10));
+            }
+          })
+        );
+
+        var growAnimate = eval(
+          Jscex.compile("async", function () {
+            do {
+              tree.grow();
+              $await(Jscex.Async.sleep(10));
+            } while (tree.canGrow());
+          })
+        );
+
+        var flowAnimate = eval(
+          Jscex.compile("async", function () {
+            do {
+              tree.flower(2);
+              $await(Jscex.Async.sleep(10));
+            } while (tree.canFlower());
+          })
+        );
+
+        var moveAnimate = eval(
+          Jscex.compile("async", function () {
+            tree.snapshot("p1", width * 0.22, 0, width * 0.56, height);
+            while (tree.move("p1", width * 0.42, 0)) {
+              foot.draw();
+              $await(Jscex.Async.sleep(10));
+            }
+            foot.draw();
+            tree.snapshot("p2", width * 0.42, 0, width * 0.56, height);
+
+            $await(Jscex.Async.sleep(300));
+            canvas.css("background", "none");
+          })
+        );
+
+        var textAnimate = eval(
+          Jscex.compile("async", function () {
+            $("#code").show().typewriter();
+          })
+        );
+
+        var runAsync = eval(
+          Jscex.compile("async", function () {
+            $await(seedAnimate());
+            $await(growAnimate());
+            $await(flowAnimate());
+            $await(moveAnimate());
+            textAnimate().start();
+
+            setTimeout(function () {
+              document.querySelector(".card").style.display = "block";
+              document.querySelector(".card").style.opacity = "0";
+              setTimeout(function () {
+                document.querySelector(".card").style.transition = "opacity 1s";
+                document.querySelector(".card").style.opacity = "1";
+              }, 50);
+            }, 1000);
+          })
+        );
+
+        runAsync().start();
+      }
+
+
+
+      // --- BEGIN: Fade initializer and show pink circle at bottom ---
+      let pinkCircleShown = false;
+      let pinkCircleScrollListenerAdded = false;
+      
+      // Ensure #main is hidden on page load and reset scroll position
+      document.addEventListener('DOMContentLoaded', () => {
+        const mainElement = document.getElementById('main');
+        if (mainElement) {
+          mainElement.style.display = 'none';
+        }
+        
+        // Reset scroll position to top immediately
+        window.scrollTo(0, 0);
+        
+        // Reset pinkCircleShown flag
+        pinkCircleShown = false;
+        pinkCircleScrollListenerAdded = false;
+      });
+      
+      // Also reset scroll position when window loads to handle any delayed scroll restoration
+      window.addEventListener('load', () => {
+        // Force scroll to top after a short delay to override browser's scroll restoration
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          // Ensure initializer is properly reset
+          const initializer = document.querySelector('.initializer');
+          if (initializer) {
+            initializer.style.opacity = '0';
+            initializer.style.display = 'none';
+          }
+        }, 100);
+      });
+      
+      function setupPinkCircleScrollListener() {
+        if (pinkCircleScrollListenerAdded) return;
+        
+        window.addEventListener('scroll', () => {
+          const initializer = document.querySelector('.initializer');
+          if (initializer) {
+            const scrollY = window.scrollY;
+            const maxScroll = document.body.scrollHeight - window.innerHeight;
+            let opacity = 1 - (scrollY / maxScroll);
+            opacity = Math.max(opacity, 0.1); // Never fully disappear
+            initializer.style.opacity = opacity;
+          }
+          // Show pink circle/tree animation only at the bottom
+          if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 2) && !pinkCircleShown) {
+            showPinkCircleAnimation();
+            pinkCircleShown = true;
+          }
+        });
+        
+        pinkCircleScrollListenerAdded = true;
+      }
+      // --- END: Fade initializer and show pink circle at bottom ---
+
+      // Responsive pink circle/tree animation on window resize
+      let lastPinkCircleWidth = null;
+      let lastPinkCircleHeight = null;
+
+      function handleResizeForPinkCircle() {
+        const main = document.getElementById('main');
+        if (main && main.style.display === 'flex') {
+          // Only re-initialize if the size actually changed
+          const width = window.innerWidth;
+          const height = window.innerHeight;
+          if (width !== lastPinkCircleWidth || height !== lastPinkCircleHeight) {
+            // Remove and re-add the canvas to clear previous animation
+            const canvas = document.getElementById('canvas');
+            if (canvas) {
+              const newCanvas = canvas.cloneNode(false);
+              canvas.parentNode.replaceChild(newCanvas, canvas);
+              newCanvas.id = 'canvas';
+            }
+            showPinkCircleAnimation();
+            lastPinkCircleWidth = width;
+            lastPinkCircleHeight = height;
+          }
+        }
+      }
+
+      window.addEventListener('resize', () => {
+        clearTimeout(window._pinkCircleResizeTimeout);
+        window._pinkCircleResizeTimeout = setTimeout(handleResizeForPinkCircle, 200);
+      });
+
+      // Birthday animation modal logic
+      const happyBirthdayText = document.getElementById('happyBirthdayText');
+      const birthdayAnimationModal = document.getElementById('birthday-animation-modal');
+      const birthdayAnimationIframe = document.getElementById('birthday-animation-iframe');
+      if (happyBirthdayText && birthdayAnimationModal && birthdayAnimationIframe) {
+        happyBirthdayText.addEventListener('click', () => {
+          playAudio();
+          birthdayAnimationIframe.src = 'ezlesz.html';
+          birthdayAnimationModal.classList.add('active');
+        });
+        birthdayAnimationModal.addEventListener('click', (e) => {
+          if (e.target === birthdayAnimationModal) {
+            birthdayAnimationModal.classList.remove('active');
+            birthdayAnimationIframe.src = '';
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
