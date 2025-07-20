@@ -1289,7 +1289,7 @@
 
             error.textContent = msg;
 
-            await fetch("https://birthday-gift-ncc0.onrender.com/save-dates", {
+            await fetch("/save-dates", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",

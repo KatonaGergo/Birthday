@@ -5,7 +5,7 @@ const fs = require("fs");
 const path = require("path");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const dataFile = path.join(__dirname, "dates.json");
 
 // Enable CORS for all origins (good for dev)
@@ -14,8 +14,8 @@ app.use(cors());
 // Parse JSON bodies
 app.use(express.json());
 
-// Serve static frontend files from "public" folder
-app.use(express.static("public"));
+// Serve static frontend files from current directory
+app.use(express.static(__dirname));
 
 // POST endpoint to save dates
 app.post("/save-dates", (req, res) => {
@@ -48,6 +48,11 @@ app.post("/save-dates", (req, res) => {
     console.log("Saved dates:", birthday, metDate);
     res.json({ success: true });
   });
+});
+
+// Serve the main HTML file
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "legjobb.html"));
 });
 
 // Start server
