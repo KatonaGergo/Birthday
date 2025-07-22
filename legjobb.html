@@ -170,7 +170,11 @@
         <span></span>
       </div>
       <div class="dropdown" id="dropdown">
-        <button onclick="window.open('https://kayshas-garden.onrender.com/', '_blank')">Back to the Roadmap</button>
+        <button
+          onclick="window.open('https://kayshas-garden.onrender.com/', '_blank')"
+        >
+          Back to the Roadmap
+        </button>
       </div>
     </div>
 
@@ -182,20 +186,32 @@
       </audio>
       <div class="card">
         <div class="cover">
-          <img src="cover.png" alt="" srcset="" />
-          <img src="back.jpg" alt="" srcset="" />
+          <img src="cover.png" alt="Front Cover" />
+          <img src="back.jpg" alt="Back Cover" />
+          <div class="cover-quote">
+            <p>“Some pieces of you live in every line I write.”</p>
+          </div>
         </div>
         <div class="content">
-          <h2>A Part Of You</h2>
-          <p>
-            <span id="happyBirthdayText" style="color:#ff00cc; cursor:pointer; font-size:1.3em; font-weight:bold;">HAPPY BIRTHDAY</span>
+          <h2 class="book-title">A Part Of You</h2>
+          <p class="book-text">
+            I love you
+            <span id="happyBirthdayText">HAPPY BIRTHDAY</span>
           </p>
         </div>
       </div>
+
       <div id="birthday-animation-modal">
         <div class="birthday-bg-overlay"></div>
-        <iframe id="birthday-animation-iframe" src="" frameborder="0" allowfullscreen></iframe>
-        <div class="modal-close-indicator">Click outside the box to close it, Kaysha ❤️</div>
+        <iframe
+          id="birthday-animation-iframe"
+          src=""
+          frameborder="0"
+          allowfullscreen
+        ></iframe>
+        <div class="modal-close-indicator">
+          Click outside the box to close it, Kaysha ❤️
+        </div>
       </div>
       <div id="wrap" style="background: url()">
         <div id="text">
@@ -812,12 +828,7 @@
       /* glow */
       .dropdown button::before {
         content: "";
-        background: linear-gradient(
-          45deg,
-          #ff0000,
-          #002bff,
-          #ff00c8
-        );
+        background: linear-gradient(45deg, #ff0000, #002bff, #ff00c8);
         position: absolute;
         top: -2px;
         left: -2px;
@@ -973,6 +984,7 @@
       .cover img:nth-child(1) {
         border-top-right-radius: 10px;
         border-bottom-right-radius: 10px;
+        object-position: center top;
       }
 
       .cover img:nth-child(2) {
@@ -995,16 +1007,60 @@
       .content {
         width: 100%;
         height: 100%;
-        padding: 1rem;
+        padding: 2rem 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* align text to the left like in a book */
+        font-size: 1rem;
+        text-align: left;
+        font-family: "Georgia", serif; /* Optional: book-like font */
+        line-height: 1.5;
+      }
+
+      .book-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 1.5rem; /* creates spacing under the title */
+        width: 100%;
+        text-align: center; /* center the title at the top */
+      }
+
+      .book-text {
+        font-size: 1rem;
+        color: #333;
+      }
+
+      #happyBirthdayText {
+        color: #ff00cc;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 1em; /* same as the surrounding paragraph */
+      }
+      .cover-quote {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding: 2rem 1rem;
+        transform: rotateY(180deg); /* show on inside left */
+        backface-visibility: hidden;
         display: flex;
         justify-content: center;
         align-items: center;
-        flex-direction: column;
-        font-size: 12px;
-      }
-
-      .content h2 {
-        margin-bottom: 1rem;
+        text-align: center;
+        font-style: italic;
+        font-size: 0.9rem;
+        color: #ffffff; /* white text if background is dark */
+        z-index: 2; /* above the image */
+        background-color: rgba(
+          0,
+          0,
+          0,
+          0.4
+        ); /* semi-transparent dark overlay for readability */
+        border-radius: 10px;
+        pointer-events: none; /* ensures it doesn’t interfere with hover */
       }
 
       /* Making it responsive for cute little phones (khm, Kaysha will probably use a phone) */
@@ -1070,13 +1126,14 @@
         left: 0;
         width: 100vw;
         height: 100vh;
-        background: url('img.png') center center / cover no-repeat;
+        background: url("img.png") center center / cover no-repeat;
         z-index: 3000;
         justify-content: center;
         align-items: center;
         opacity: 0;
         transform: scale(0.97);
-        transition: opacity 0.7s cubic-bezier(.4,2,.6,1), transform 0.7s cubic-bezier(.4,2,.6,1);
+        transition: opacity 0.7s cubic-bezier(0.4, 2, 0.6, 1),
+          transform 0.7s cubic-bezier(0.4, 2, 0.6, 1);
       }
       #birthday-animation-modal.active {
         display: flex;
@@ -1086,7 +1143,12 @@
       #birthday-animation-modal .birthday-bg-overlay {
         position: absolute;
         inset: 0;
-        background: rgba(255,0,204,0.10); /* soft pinkish glow, adjust as desired */
+        background: rgba(
+          255,
+          0,
+          204,
+          0.1
+        ); /* soft pinkish glow, adjust as desired */
         z-index: 1;
         pointer-events: none;
         border-radius: 18px;
@@ -1106,11 +1168,11 @@
         left: 50%;
         transform: translateX(-50%);
         color: #fff;
-        background: rgba(0,0,0,0.45);
+        background: rgba(0, 0, 0, 0.45);
         padding: 8px 22px;
         border-radius: 16px;
         font-size: 1.1em;
-        font-family: 'Michroma', sans-serif;
+        font-family: "Michroma", sans-serif;
         letter-spacing: 0.04em;
         z-index: 10;
         box-shadow: 0 2px 12px #ff00cc55;
@@ -1360,7 +1422,7 @@
             },
             300
           );
-          
+
           // Set up the pink circle scroll listener only after initializer is shown
           setupPinkCircleScrollListener();
         }, 300);
@@ -1467,8 +1529,6 @@
       });
 
       ScrollTrigger.refresh();
-
-      
 
       // Neon fluid gradient + cursor glow
       const animatedBg = document.getElementById("animated-bg");
@@ -1734,60 +1794,62 @@
         runAsync().start();
       }
 
-
-
       // --- BEGIN: Fade initializer and show pink circle at bottom ---
       let pinkCircleShown = false;
       let pinkCircleScrollListenerAdded = false;
-      
+
       // Ensure #main is hidden on page load and reset scroll position
-      document.addEventListener('DOMContentLoaded', () => {
-        const mainElement = document.getElementById('main');
+      document.addEventListener("DOMContentLoaded", () => {
+        const mainElement = document.getElementById("main");
         if (mainElement) {
-          mainElement.style.display = 'none';
+          mainElement.style.display = "none";
         }
-        
+
         // Reset scroll position to top immediately
         window.scrollTo(0, 0);
-        
+
         // Reset pinkCircleShown flag
         pinkCircleShown = false;
         pinkCircleScrollListenerAdded = false;
       });
-      
+
       // Also reset scroll position when window loads to handle any delayed scroll restoration
-      window.addEventListener('load', () => {
+      window.addEventListener("load", () => {
         // Force scroll to top after a short delay to override browser's scroll restoration
         setTimeout(() => {
           window.scrollTo(0, 0);
           // Ensure initializer is properly reset
-          const initializer = document.querySelector('.initializer');
+          const initializer = document.querySelector(".initializer");
           if (initializer) {
-            initializer.style.opacity = '0';
-            initializer.style.display = 'none';
+            initializer.style.opacity = "0";
+            initializer.style.display = "none";
           }
         }, 100);
       });
-      
+
       function setupPinkCircleScrollListener() {
         if (pinkCircleScrollListenerAdded) return;
-        
-        window.addEventListener('scroll', () => {
-          const initializer = document.querySelector('.initializer');
+
+        window.addEventListener("scroll", () => {
+          const initializer = document.querySelector(".initializer");
           if (initializer) {
             const scrollY = window.scrollY;
             const maxScroll = document.body.scrollHeight - window.innerHeight;
-            let opacity = 1 - (scrollY / maxScroll);
+            let opacity = 1 - scrollY / maxScroll;
             opacity = Math.max(opacity, 0.1); // Never fully disappear
             initializer.style.opacity = opacity;
           }
           // Show pink circle/tree animation only at the bottom
-          if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 2) && !pinkCircleShown) {
+          if (
+            window.innerHeight + window.scrollY >=
+              document.body.offsetHeight - 2 &&
+            !pinkCircleShown
+          ) {
             showPinkCircleAnimation();
             pinkCircleShown = true;
           }
         });
-        
+
         pinkCircleScrollListenerAdded = true;
       }
       // --- END: Fade initializer and show pink circle at bottom ---
@@ -1797,18 +1859,21 @@
       let lastPinkCircleHeight = null;
 
       function handleResizeForPinkCircle() {
-        const main = document.getElementById('main');
-        if (main && main.style.display === 'flex') {
+        const main = document.getElementById("main");
+        if (main && main.style.display === "flex") {
           // Only re-initialize if the size actually changed
           const width = window.innerWidth;
           const height = window.innerHeight;
-          if (width !== lastPinkCircleWidth || height !== lastPinkCircleHeight) {
+          if (
+            width !== lastPinkCircleWidth ||
+            height !== lastPinkCircleHeight
+          ) {
             // Remove and re-add the canvas to clear previous animation
-            const canvas = document.getElementById('canvas');
+            const canvas = document.getElementById("canvas");
             if (canvas) {
               const newCanvas = canvas.cloneNode(false);
               canvas.parentNode.replaceChild(newCanvas, canvas);
-              newCanvas.id = 'canvas';
+              newCanvas.id = "canvas";
             }
             showPinkCircleAnimation();
             lastPinkCircleWidth = width;
@@ -1817,25 +1882,36 @@
         }
       }
 
-      window.addEventListener('resize', () => {
+      window.addEventListener("resize", () => {
         clearTimeout(window._pinkCircleResizeTimeout);
-        window._pinkCircleResizeTimeout = setTimeout(handleResizeForPinkCircle, 200);
+        window._pinkCircleResizeTimeout = setTimeout(
+          handleResizeForPinkCircle,
+          200
+        );
       });
 
       // Birthday animation modal logic
-      const happyBirthdayText = document.getElementById('happyBirthdayText');
-      const birthdayAnimationModal = document.getElementById('birthday-animation-modal');
-      const birthdayAnimationIframe = document.getElementById('birthday-animation-iframe');
-      if (happyBirthdayText && birthdayAnimationModal && birthdayAnimationIframe) {
-        happyBirthdayText.addEventListener('click', () => {
+      const happyBirthdayText = document.getElementById("happyBirthdayText");
+      const birthdayAnimationModal = document.getElementById(
+        "birthday-animation-modal"
+      );
+      const birthdayAnimationIframe = document.getElementById(
+        "birthday-animation-iframe"
+      );
+      if (
+        happyBirthdayText &&
+        birthdayAnimationModal &&
+        birthdayAnimationIframe
+      ) {
+        happyBirthdayText.addEventListener("click", () => {
           playAudio();
-          birthdayAnimationIframe.src = 'ezlesz.html';
-          birthdayAnimationModal.classList.add('active');
+          birthdayAnimationIframe.src = "ezlesz.html";
+          birthdayAnimationModal.classList.add("active");
         });
-        birthdayAnimationModal.addEventListener('click', (e) => {
+        birthdayAnimationModal.addEventListener("click", (e) => {
           if (e.target === birthdayAnimationModal) {
-            birthdayAnimationModal.classList.remove('active');
-            birthdayAnimationIframe.src = '';
+            birthdayAnimationModal.classList.remove("active");
+            birthdayAnimationIframe.src = "";
           }
         });
       }
